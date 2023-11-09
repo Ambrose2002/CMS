@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "b85a6fa3-8f12-429e-8c00-72d5c2945ce1",
+		"name": "CMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30345061",
+		"_collection_link": "https://grey-spaceship-379791.postman.co/workspace/intro-to-backend~a029e6fd-d2e1-4456-859e-6538a912b507/collection/30345061-b85a6fa3-8f12-429e-8c00-72d5c2945ce1?action=share&source=collection_link&creator=30345061"
+	},
+	"item": [
+		{
+			"name": "get courses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.49.98.236:8000/api/courses/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"49",
+						"98",
+						"236"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"courses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get specific course",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.49.98.236:8000/api/courses/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"49",
+						"98",
+						"236"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"courses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\": \"CS 1110\",\n    \"name\": \"Intro to Computing\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.49.98.236:8000/api/courses/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"49",
+						"98",
+						"236"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"courses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete course",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://10.49.98.236:8000/api/courses/1/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"49",
+						"98",
+						"236"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"courses",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ambrose Blay\",\n    \"netid\": \"ab2838\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.49.98.236:8000/api/users/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"49",
+						"98",
+						"236"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get specific user",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "add user to course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"abs838\",\n    \"type\": \"student\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.49.98.236:8000/api/courses/1/add",
+					"protocol": "http",
+					"host": [
+						"10",
+						"49",
+						"98",
+						"236"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"courses",
+						"1",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_assignment",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
