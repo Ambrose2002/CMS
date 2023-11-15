@@ -13,6 +13,8 @@ instructors_assoc = db.Table("instructors_assoc", db.Model.metadata,
 )
 
 class Courses(db.Model):
+    """Class for creating course objects
+    """
     __tablename__ = "courses"
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String, nullable = False)
@@ -22,11 +24,15 @@ class Courses(db.Model):
     assignments = db.relationship("Assignment", cascade = "delete")
     
     def __init__(self, **kwargs):
+        """initialize course object
+        """
         self.code = kwargs.get("code")
         self.name = kwargs.get("name")
         
         
     def serialize(self):
+        """serialize a course object
+        """
         return{
             "id": self.id,
             "code": self.code,
@@ -38,6 +44,8 @@ class Courses(db.Model):
         
     
     def simple_serialize(self):
+        """serialie a course object
+        """
         return{
             "id": self.id,
             "code": self.code,
@@ -46,6 +54,8 @@ class Courses(db.Model):
         
 
 class Users(db.Model):
+    """Class for creating a users object
+    """
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable = False)
@@ -55,11 +65,15 @@ class Users(db.Model):
     
     
     def __init__(self, **kwargs):
+        """initialize a users object
+        """
         self.name = kwargs.get("name")
         self.netid = kwargs.get("netid")
         
     
     def serialize(self):
+        """serialize a users object
+        """
         return {
             "id": self.id,
             "name": self.name, 
@@ -79,6 +93,8 @@ class Users(db.Model):
 
 
 class Assignment(db.Model):
+    """Class for creating an assignment object
+    """
     __tablename__ = "assignment"
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String, nullable = False)
@@ -86,12 +102,15 @@ class Assignment(db.Model):
     course_id = db.Column(db.Integer, db.ForeignKey("courses.id"), nullable = False)
     
     def __init__(self, **kwargs):
+        """initialize an assignment object
+        """
         self.title = kwargs.get("title")
         self.due_date = kwargs.get("due_date")
         self.course_id = kwargs.get("course_id")
 
     def serialize(self):
-        
+        """serialize an assignment object
+        """
         course = Courses.query.filter_by(id = self.course_id).first()
         
         return {
@@ -103,6 +122,8 @@ class Assignment(db.Model):
         }
         
     def simple_assignment_serialize(self):
+        """serialize an assignment object
+        """
         return {
             "id": self.id, 
             "title": self.title,

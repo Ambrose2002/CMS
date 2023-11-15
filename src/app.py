@@ -4,6 +4,7 @@ from flask import Flask, request
 
 
 app = Flask(__name__)
+
 db_filename = "cms.db"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///%s" % db_filename
@@ -26,12 +27,19 @@ def failure_response(message, code=404):
 @app.route("/")
 @app.route("/api/courses/")
 def get_courses():
+    """returns all courses
+
+    Returns:
+        json: json of all courses
+    """
     courses = [course.serialize() for course in Courses.query.all()]
     return success_response({"courses": courses})
 
 
 @app.route("/api/courses/", methods= ["POST"])
 def create_course():
+    """endpoint for creating a course
+    """
     body = json.loads(request.data)
     code = body.get("code")
     name = body.get("name")
@@ -50,6 +58,12 @@ def create_course():
 
 @app.route("/api/courses/<int:course_id>/")
 def get_specific_course(course_id):
+    """endpoint for getting specific course
+
+    Args:
+        course_id (int): id of the course to retrieve
+
+    """
     course = Courses.query.filter_by(id = course_id).first()
     if course is None:
         return failure_response("Course not found")
@@ -58,6 +72,11 @@ def get_specific_course(course_id):
 
 @app.route("/api/courses/<int:course_id>/", methods = ["DELETE"])
 def delete_course(course_id):
+    """endpoint for deleting specific course
+
+    Args:
+        course_id (int): id of the course to delete
+    """
     course = Courses.query.filter_by(id = course_id).first()
     if course is None:
         return failure_response("Course not found")
@@ -68,6 +87,8 @@ def delete_course(course_id):
 
 @app.route("/api/users/", methods = ["POST"])
 def create_user():
+    """endpoint for creating user
+    """
     body = json.loads(request.data)
     name = body.get("name"),
     netid = body.get("netid")
@@ -83,8 +104,11 @@ def create_user():
     db.session.commit()
     return success_response(user.serialize(), 201)
 
+
 @app.route("/api/users/<int:user_id>/")
 def get_specific_user(user_id):
+    """endpoint for getting specific user
+    """
     user = Users.query.filter_by(id = user_id).first()
     if user is None:
         return failure_response("User not found")
@@ -93,6 +117,11 @@ def get_specific_user(user_id):
 
 @app.route("/api/courses/<int:id>/add/", methods = ["POST"])
 def add_user_course(id):
+    """endpoint for adding user to course
+
+    Args:
+        id (int): course id
+    """
     course = Courses.query.filter_by(id = id).first()
     if course is None:
         return failure_response("Course not found")
@@ -114,6 +143,11 @@ def add_user_course(id):
 
 @app.route("/api/courses/<int:id>/assignment/", methods = ["POST"])
 def add_assignment(id):
+    """endpoint for adding a course assignment
+
+    Args:
+        id (int): course id
+    """
     course = Courses.query.filter_by(id = id).first()
     if course is None:
         return failure_response("Course not found")
