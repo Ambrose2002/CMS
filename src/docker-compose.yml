@@ -1,6 +1,7 @@
 version: "3"
+
 services:
   cms:
-    image: cms
+    image: ambrose2002/cms6
     ports:
-      - "3000:3000"
+      - "80:8000"
